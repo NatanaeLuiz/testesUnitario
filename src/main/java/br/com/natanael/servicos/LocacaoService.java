@@ -15,8 +15,14 @@ import br.com.natanael.utils.DataUtils;
 
 public class LocacaoService {
 	
-	public Locacao alugarFilme(Usuario usuario, Filme filme) {
+	public Locacao alugarFilme(Usuario usuario, Filme filme) throws Exception {
 		Locacao locacao = new Locacao();
+		
+		
+		if (filme.getEstoque() == 0) {
+			throw new Exception("Sem estoque para o filme atual");
+		}
+		
 		locacao.setFilme(filme);
 		locacao.setUsuario(usuario);
 		locacao.setDataLocacao(new Date());
